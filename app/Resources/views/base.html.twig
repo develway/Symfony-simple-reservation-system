@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Simple Reservation{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/foundation.css') }}">
+        <link rel="stylesheet" href="{{ asset('pickadate/lib/themes/default.css') }}">
+        <link rel="stylesheet" href="{{ asset('pickadate/lib/themes/default.date.css') }}">
+    </head>
+    <body>
+
+        <!-- Start Top Bar -->
+    <div class="top-bar">
+      <div class="row">
+        <div class="top-bar-left">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li><a href="{{ path('home') }}">Home</a></li>
+            <li><a href="{{ path('index_clients') }}">Clients</a></li>
+            <li><a href="{{ path('reservations') }}">Reservations</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- End Top Bar -->
+
+    <br>
+    
+    {% block body %}{% endblock %}
+    
+
+    <div class="row column">
+      <hr>
+      <ul class="menu">
+        <li class="float-right">Copyright 2018</li>
+      </ul>
+    </div>
+
+    <script>
+      $(document).foundation();
+    </script>
+
+        {% block javascripts %}{% endblock %}
+        <script src="{{ asset('js/vendor/jquery.js') }}"></script>
+        <script src="{{ asset('js/vendor/what-input.js') }}"></script>
+        <script src="{{ asset('js/vendor/foundation.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('pickadate/lib/picker.js') }}"></script>
+        <script src="{{ asset('pickadate/lib/picker.date.js') }}"></script>
+        <script>
+            $('.datepicker').pickadate(
+              { 
+                format: 'yyyy-mm-dd',
+                formatSubmit: 'yyyy-mm-dd' 
+              }
+              );
+        </script>
+    </body>
+</html>

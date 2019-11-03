@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+      <div class="medium-12 large-12 columns">
+        <h4>Clients/Booking</h4>
+        <div class="medium-2  columns">BOOKING FOR:</div>
+        <div class="medium-2  columns"><b>{{ client.name | upper }} {{ client.lastName | upper }}</b></div>
+        <form action="{{ path('booking', {'client_id': client.id}) }}" method="post">
+          <div class="medium-1  columns">FROM:</div>
+          <div class="medium-2  columns"><input name="form[dateFrom]" value="{{dates.from}}" type="text" class="datepicker" /></div>
+          <div class="medium-1  columns">TO:</div>
+          <div class="medium-2  columns"><input name="form[dateTo]" value="{{dates.to}}" type="text" class="datepicker" /></div>
+          <div class="medium-2  columns"><input class="button" type="submit" value="SEARCH" /></div>
+        </form>
+
+        <table class="stack">
+          <thead>
+            <tr>
+              <th width="200">Room</th>
+              <th width="200">Availability</th>
+              <th width="200">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for room in rooms %}
+            <tr>
+              <td>{{room.name}}</td>
+              <td>
+                <div class="callout success">
+                    <h7>Available</h7>
+                </div>
+              </td>
+              <td>
+                <a class="hollow button warning" href="{{ path('book_room', {'client_id': client.id, 'room_id': room.id, 'date_in': dates.from, 'date_out': dates.to}) }}">BOOK NOW</a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+{% endblock %}

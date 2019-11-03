@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+      <div class="medium-12 large-12 columns">
+        <h4>Reservations</h4>
+
+        <table class="stack">
+          <thead>
+            <tr>
+              <th width="200"><strong>ROOM</strong></th>
+              <th width="200"><strong>Name</strong></th>
+              <th width="200"><strong>DATES</strong></th>
+              <th width="200"><strong>Action</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for reservation in reservations %}
+            <tr>
+              <td>{{reservation.room.name}}</td>
+              <td>{{reservation.client.title | capitalize}}. {{reservation.client.name}} {{reservation.client.lastName}}</td>
+              <td>{{ reservation.dateIn | date('d-M-Y') | lower }} to {{ reservation.dateOut | date('d-M-Y') | lower }}</td>
+              <td>
+                <a class="hollow button alert" href="{{ path('cancel_booking', { 'reservation_id' : reservation.id }) }}" onclick="return confirm('Are you sure you wish to cancel the reservation?')">CANCEL</a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+{% endblock %}

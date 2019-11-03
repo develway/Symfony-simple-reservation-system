@@ -1,0 +1,31 @@
+AppBundle\Entity\Reservation:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ReservationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateIn:
+            type: datetime
+            column: date_in
+        dateOut:
+            type: datetime
+            column: date_out
+    lifecycleCallbacks: {  }
+    manyToOne:
+        client:
+            targetEntity: Client
+            inversedBy: reservations
+            joinColumn:
+                name: client_id
+                referencedColumnName: id
+        room:
+            targetEntity: Room
+            inversedBy: reservations
+            joinColumn:
+                name: room_id
+                referencedColumnName: id

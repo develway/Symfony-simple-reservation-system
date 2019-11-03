@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+      <div class="medium-12 large-12 columns">
+        <h4>{{mode == 'n' ? 'New Client' : 'Modify Client'}}</h4>
+        <form action="{{ mode == 'n' ? path('new_client') : path('modify_client', { 'client_id': form.id }) }}" method="post">
+          <div class="medium-4  columns">
+            <label>Title</label>
+            <select name="form[title]">
+            {% for title in form.titles %}
+              <option value="{{title}}" {{ title == form.title ? 'selected' : '' }}>{{title | capitalize}}.</option>
+            {% endfor %}
+            </select>
+          </div>
+          <div class="medium-4  columns">
+            <label>Name</label>
+            <input name="form[name]" value="{{ form.name is defined ? form.name : '' }}" type="text" />
+          </div>
+          <div class="medium-4  columns">
+            <label>Last Name</label>
+            <input name="form[lastName]" value="{{ form.last_name is defined ? form.last_name : '' }}" type="text" />
+          </div>
+          <div class="medium-8  columns">
+            <label>Address</label>
+            <input name="form[address]" value="{{ form.address is defined ? form.address : '' }}" type="text" />
+          </div>
+          <div class="medium-4  columns">
+            <label>zip_code</label>
+            <input name="form[zipCode]" value="{{ form.zip_code is defined ? form.zip_code : '' }}" type="text" />
+          </div>
+          <div class="medium-4  columns">
+            <label>City</label>
+            <input name="form[city]" value="{{ form.city is defined ? form.city : '' }}" type="text" />
+          </div>
+          <div class="medium-4  columns">
+            <label>State</label>
+            <input name="form[state]" value="{{ form.state is defined ? form.state : '' }}" type="text" />
+          </div>
+          <div class="medium-12  columns">
+            <label>Email</label>
+            <input name="form[email]" value="{{ form.email is defined ? form.email : '' }}" type="text" />
+          </div>
+          <div class="medium-12  columns">
+            <input type="submit" value="SAVE" class="button success hollow" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+{% endblock %}

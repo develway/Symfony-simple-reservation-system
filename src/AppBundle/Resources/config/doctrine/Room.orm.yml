@@ -1,0 +1,23 @@
+AppBundle\Entity\Room:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\RoomRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '20'
+        floor:
+            type: integer
+        description:
+            type: text
+    lifecycleCallbacks: {  }
+    oneToMany:
+        reservations:
+            targetEntity: Reservation
+            mappedBy: room

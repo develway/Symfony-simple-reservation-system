@@ -1,0 +1,43 @@
+AppBundle\Entity\Client:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ClientRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '20'
+            nullable: true
+        name:
+            type: string
+            length: '100'
+        lastName:
+            type: string
+            length: '100'
+            column: last_name
+        address:
+            type: text
+        zipCode:
+            type: string
+            length: '10'
+            column: zip_code
+        city:
+            type: string
+            length: '50'
+        state:
+            type: string
+            length: '20'
+        email:
+            type: string
+            length: '100'
+            unique: true
+    lifecycleCallbacks: {  }
+    oneToMany:
+        reservations:
+            targetEntity: Reservation
+            mappedBy: client
